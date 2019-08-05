@@ -88,8 +88,10 @@ def extract_stock_data(directory):
 
 def main():
 
-    stock_directory="C:/Users/admin/Documents/stockAnalysis/SourceData/Stocks"
+    stock_directory = "C:/Users/admin/Documents/stockAnalysis/SourceData/Stocks"
     companyList, companyStockList = extract_stock_data(stock_directory)
+
+    '''Write a function to return companyStockList adjusted for the general market'''
 
 if __name__ == "__main__":
      main()
