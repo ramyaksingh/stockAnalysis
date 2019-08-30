@@ -4,19 +4,38 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from modwt import modwt, modwtmra
 
-fig = plt.figure()
-ax = Axes3D(fig)
 
-data = pd.read_csv('/Users/varunvasudevan/Desktop/Purdue/5_Fin/Research/Stocks/stockAnalysis/SourceData/Stocks/aapl.us.csv')
-volume = data['Volume'].values
-mdwt = modwt(volume,'db4',10)
-mdwtu = mdwt[6]
-arr = []
-for i in range (0,len(volume)):
-    arr.append(i)
+# "/Users/varunvasudevan/Desktop/Purdue/5_Fin/Research/Stocks/stockAnalysis/SourceData/Stocks/aapl.us.csv"
 
-X = np.reshape(volume,(82,102))
-Y = np.reshape(arr, (82,102))
-Z = np.reshape(mdwtu, (82,102))
-ax.plot_surface(X=Z,Y=X,Z=Y)
-plt.show()
+def reed(inVec):
+    data = pd.read_csv(inVec)
+    dList = data['Volume'].values
+    return dList
+
+def arr_gen(inVec):
+    arr = []
+    lenDList = len(inVec)
+    for i in range (0,lenDList):
+        arr.append(i)
+    return arr
+
+def t_coeff(inVec, level):
+    mdwt1 = modwt(inVec,"db4",level)
+    ret_T_coef = mdwt1[level-1]
+    return ret_T_coef
+
+def display(inVec, t_coeff, level):
+    fig = plt.figure()
+    ax = Axes3D(fig)
+    arr = arr_gen(inVec)
+    trans_coeff = t_coeff(inVec, level)
+    x = np.reshape(inVec, (82, 102))
+    y = np.reshape(arr,(82, 102))
+    z = np.reshape(trans_coeff,(82, 102))
+    ax.plot_surface(X=z, Y=x, Z=y)
+    plt.show()
+
+if __name__ == "__main__":
+    inn = ("/Users/varunvasudevan/Desktop/Purdue/5_Fin/Research/Stocks/stockAnalysis/SourceData/Stocks/aapl.us.csv")
+    inVec = reed(inn)
+    mdwt_coeff = t_coeff(inVec, level=7)
