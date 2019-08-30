@@ -5,8 +5,6 @@ from mpl_toolkits.mplot3d import Axes3D
 from modwt import modwt, modwtmra
 
 
-# "/Users/varunvasudevan/Desktop/Purdue/5_Fin/Research/Stocks/stockAnalysis/SourceData/Stocks/aapl.us.csv"
-
 def reed(inVec):
     data = pd.read_csv(inVec)
     dList = data['Volume'].values
@@ -36,6 +34,6 @@ def display(inVec, t_coeff, level):
     plt.show()
 
 if __name__ == "__main__":
-    inn = ("/Users/varunvasudevan/Desktop/Purdue/5_Fin/Research/Stocks/stockAnalysis/SourceData/Stocks/aapl.us.csv")
+    inn = ("<enter file path>)
     inVec = reed(inn)
     mdwt_coeff = t_coeff(inVec, level=7)
