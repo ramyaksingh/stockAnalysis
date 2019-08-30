@@ -1,0 +1,24 @@
+1) Modify the Keras code
+      a) Understand the need for timesteps and write your own timesteps function - 2 hours
+      b) Move everything to a Python file - 1 hour
+      c) Re-create Python notebook systematically - 30 mins
+
+2) Make a list of all the things I can change - Might involve learning more about LSTM and backprops - 4 hours
+
+3) Re-train model after making those changes and look at accuracy metrics - 1 day
+
+4) Set up evaluation metrics after first couple of runs - 3-4 hours
+
+5) Use Varun's transformed inputs and outputs and see if it helps with accuracy at all - 1 day
+    a) If yes, perfect
+    b) If not, transform values with respect to the general stock market and try again
+
+6) Look at other approaches and try to get ideas and insights from other github blogs and research pages to get a suitable accuracy - 1 day
+
+7) Start decreasing the cut-off point bit by bit and change evaluation metrics for this purpose - 2-3 days
+
+8) Maybe look at making:                                                                  - IDK
+    a) ensemble models
+    b) Using inputs other than prior stock data to make predictions
+
+9) Work on cloud deployment and getting servers for suitable computations
