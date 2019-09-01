@@ -22,3 +22,10 @@
     b) Using inputs other than prior stock data to make predictions
 
 9) Work on cloud deployment and getting servers for suitable computations
+
+
+
+When I use timesteps = 30 and used 6 years data to predict for the new two years, my model predicts well till 6 months ahead
+
+What I am doing is a tradeoff between between accuracies. We might have lower overall accuracy, but if the model works better
+for over long term, then even tho near term accuracy is not comparable, we might prefer that model.
