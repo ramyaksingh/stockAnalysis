@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from MODWT import modwt, imodwt, modwtmra
-
+import datetime
 
 def reed(inVec):
     """
@@ -26,9 +26,15 @@ def arr_gen(inVec):
 def t_coeff(inVec,filter,level):
     filter = "db4"
     mdwt1 = modwt(inVec,filter,level)
-    r_t_c =  modwtmra(mdwt1,"db4")
+    r_t_c =  modwtmra(mdwt1,filter)
     ret_T_coef = r_t_c[3] # 3 is chosen based on the size of the data being used
     return ret_T_coef
+
+def fn_trial(inVec, filter):
+    trans = modwt(inVec,filter,7)
+    inv  = imodwt(trans,filter)
+    return inv
+
 
 def display(inVec, t_coeff, level):
     fig = plt.figure()
@@ -42,8 +48,12 @@ def display(inVec, t_coeff, level):
     plt.show()
 
 if __name__ == "__main__":
+    now = datetime.datetime.now()
     inn = '/Users/rahulnairjaishankar/Documents/Code/Stocks/stockAnalysis/SourceData/Stocks/ge.us.test.csv'
     data = pd.read_csv(inn)
     dList = data['Volume'].values
-    mdwt_coeff = t_coeff(dList,"db4", level= 10)
-  
+    # mdwt_coeff = t_coeff(dList,"db4", level= 16)
+    a = fn_trial(dList,"db4")
+
+    later = datetime.datetime.now()
+    print(later-now)
