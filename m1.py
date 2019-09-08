@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-from MODWT import modwt, imodwt, modwtmra
+from modwt import modwt, imodwt, modwtmra
 import datetime
 
 def reed(inVec):
@@ -27,7 +27,7 @@ def t_coeff(inVec,filter,level):
     filter = "db4"
     mdwt1 = modwt(inVec,filter,level)
     r_t_c =  modwtmra(mdwt1,filter)
-    ret_T_coef = r_t_c[2] # 3 is chosen based on the size of the data being used
+    ret_T_coef = r_t_c[2] # 2 is chosen based on the size of the data being used
     return ret_T_coef
 
 def invert(inVec, filter):

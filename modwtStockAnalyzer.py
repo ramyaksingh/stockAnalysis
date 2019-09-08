@@ -59,8 +59,9 @@ if __name__ == '__main__':
     '''
     Get the data and shape it
     '''
-    dset = pd.read_csv('/Users/rahulnairjaishankar/Documents/Code/Stocks/stockAnalysis/SourceData/Stocks/ge.us.test.csv', index_col="Date", parse_dates=True)
-    dataset = t_coeff(dset,'sym',4)
+    dset = pd.read_csv('/Users/varunvasudevan/Desktop/Purdue/5_Fin/Research/Stocks/stockAnalysis/SourceData/Stocks/ge.us.txt', index_col="Date", parse_dates=True)
+    daset = t_coeff(dset,'db4',3)
+    dataset = np.asarray(daset)
     training_set=cleanData(dataset, parameter='Open')
     sc, training_set_scaled = featureScale(input=training_set, start=0, end=1)
     X_train, y_train = buildTimeSteps(training_set_scaled, timesteps=60)
@@ -97,9 +98,7 @@ if __name__ == '__main__':
     X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1], 1))
     predicted_stock_price = model.predict(X_test)
     predicted_stock_price = sc.inverse_transform(predicted_stock_price)
-
     predicted_stock_price=pd.DataFrame(predicted_stock_price)
-    p_s_p = predicted_stock_pri
     '''
     Plots and visualization
     '''
