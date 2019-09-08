@@ -27,10 +27,10 @@ def t_coeff(inVec,filter,level):
     filter = "db4"
     mdwt1 = modwt(inVec,filter,level)
     r_t_c =  modwtmra(mdwt1,filter)
-    ret_T_coef = r_t_c[3] # 3 is chosen based on the size of the data being used
+    ret_T_coef = r_t_c[2] # 3 is chosen based on the size of the data being used
     return ret_T_coef
 
-def fn_trial(inVec, filter):
+def invert(inVec, filter):
     trans = modwt(inVec,filter,7)
     inv  = imodwt(trans,filter)
     return inv
@@ -49,11 +49,23 @@ def display(inVec, t_coeff, level):
 
 if __name__ == "__main__":
     now = datetime.datetime.now()
+
     inn = '/Users/rahulnairjaishankar/Documents/Code/Stocks/stockAnalysis/SourceData/Stocks/ge.us.test.csv'
     data = pd.read_csv(inn)
     dList = data['Volume'].values
-    # mdwt_coeff = t_coeff(dList,"db4", level= 16)
-    a = fn_trial(dList,"db4")
+    mdwt_coeff = t_coeff(dList,"db4", level= 8)
+
+    ar = arr_gen(dList)
+    a = invert(dList,"sym6")
+    npa = np.asarray(a)
+    npar = np.asarray(ar)
+
+
+    plt.plot(npar, mdwt_coeff, 'r-')
+    plt.plot(npar, npa, 'g-')
+    plt.show()
+
 
     later = datetime.datetime.now()
+
     print(later-now)
